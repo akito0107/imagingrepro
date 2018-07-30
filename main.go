@@ -45,6 +45,9 @@ func main() {
 			wg.Add(1)
 			go func(c int) {
 				log.Printf("start %d \n", c)
+				defer func() {
+					log.Printf("end %d \n", c)
+				}()
 				process(filepath)
 				<-lock
 				wg.Done()
