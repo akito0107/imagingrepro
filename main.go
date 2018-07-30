@@ -1,30 +1,30 @@
 package main
 
 import (
-	"github.com/disintegration/imaging"
-	"os"
-	"image"
-	_ "net/http/pprof"
-	"io"
-	"image/jpeg"
-	"io/ioutil"
 	"flag"
-	"net/http"
+	"image"
+	"image/jpeg"
+	"io"
+	"io/ioutil"
 	"log"
-	"sync"
-	time2 "time"
+	"net/http"
+	_ "net/http/pprof"
+	"os"
 	"runtime"
+	"sync"
+	"time"
+
+	"github.com/disintegration/imaging"
 )
 
 var count = flag.Int("count", 100, "")
 var concurrency = flag.Int("concurency", 10, "")
-var throughput = flag.Int("throughput", 5, "")
 
 func main() {
 	runtime.GOMAXPROCS(4)
-	start := time2.Now()
+	start := time.Now()
 	defer func() {
-		finish := time2.Now()
+		finish := time.Now()
 		log.Printf("start %v, finish %v \n", start, finish)
 	}()
 
